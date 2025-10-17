@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderne Terminplaner-App</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" type="module" defer></script>
+</head>
+<body>
+    <header>
+        <div class="logo">Terminplaner</div>
+        <nav class="view-switcher">
+            <button id="month-view-btn" class="active">Monat</button>
+            <button id="week-view-btn">Woche</button>
+            <button id="day-view-btn">Tag</button>
+        </nav>
+        <div class="navigation">
+            <button id="prev-btn" aria-label="Vorheriger Monat">◀</button>
+            <h2 id="current-month-year"></h2>
+            <button id="next-btn" aria-label="Nächster Monat">▶</button>
+            <button id="today-btn">Heute</button>
+        </div>
+        <button id="new-event-btn">+ Neuer Termin</button>
+    </header>
+    <main id="calendar-container">
+        <!-- Kalender-Grid wird hier dynamisch generiert -->
+    </main>
+
+    <!-- Modal für Terminerstellung/-bearbeitung -->
+    <div id="event-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <form id="event-form">
+                <input type="hidden" id="event-id" name="eventId">
+                <h3 id="modal-title">Neuer Termin</h3>
+                <div class="form-group">
+                    <label for="event-title">Titel *</label>
+                    <input type="text" id="event-title" name="title" required maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="event-start-date">Start *</label>
+                    <input type="datetime-local" id="event-start-date" name="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="event-end-date">Ende</label>
+                    <input type="datetime-local" id="event-end-date" name="endDate">
+                </div>
+                <div class="form-group">
+                    <label for="event-description">Beschreibung</label>
+                    <textarea id="event-description" name="description" maxlength="500"></textarea>
+                </div>
+                <div class="form-group reminder-group">
+                    <input type="checkbox" id="event-reminder" name="reminderEnabled">
+                    <label for="event-reminder">Erinnerung</label>
+                    <select id="event-reminder-time" name="reminderMinutesBefore" disabled>
+                        <option value="5">5 Minuten vorher</option>
+                        <option value="15" selected>15 Minuten vorher</option>
+                        <option value="30">30 Minuten vorher</option>
+                        <option value="60">1 Stunde vorher</option>
+                        <option value="1440">1 Tag vorher</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" id="save-event-btn">Speichern</button>
+                    <button type="button" id="delete-event-btn" style="display: none;">Löschen</button>
+                    <button type="button" id="cancel-event-btn">Abbrechen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
